@@ -1,0 +1,797 @@
+/*
+ *  General
+ */
+@import url('https://fonts.googleapis.com/css?family=Hind|Baloo|Abel|Fugaz+One&display=swap');
+
+html, body {
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background: gainsboro;
+    font-family: 'Hind', 'Baloo', sans-serif;
+    font-size: 14px;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Abel', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #119da4;
+}
+
+button {
+    padding: 0.5em;
+    background: #119da4;
+    border-radius: 0.2em;
+    border-width: 0;
+    font: 1em 'Fugaz One', serif;
+    color: #fff;
+}
+
+input, 
+textarea {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border-radius: 1.5em;
+}
+
+button:focus,
+input:focus,
+textarea:focus {
+    outline: none
+}
+
+button:hover {
+    box-shadow: 10px 10px 10px 1px rgba(0,0,0,0.45);
+}
+
+article {
+    padding: 10vh 3em;
+}
+
+.middot {
+    font-size: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.error {
+    width: 50%;
+    margin: 0 auto;
+    background: red;
+    color: white;
+}
+
+.error p {
+    margin: 0;
+}
+
+/* Votesbar */
+
+.for,
+.against {
+    display: inline-block;
+    height: 4em;
+    text-align: center;
+    color: #fff;
+}
+
+.for {
+    background: #ed254e;
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+}
+
+.for div,
+.against div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.against {
+    background: #058ed9;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
+
+/*
+ *  Helpers
+ */
+
+.u-textMuted {
+    color: dimgrey !important;
+}
+
+.u-block {
+    display: block !important;
+}
+
+.u-iBlock {
+    display: inline-block !important;
+}
+
+.u-xCenter {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.u-imgAvatar {
+    border-radius: 100% !important;
+}
+
+/* 
+ *  Navbar 
+ */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    background: #fff;
+    list-style-type: none;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.navbar:before,
+.navbar:after {
+    content: "";
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    top: 50%;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    border-radius: 10px;
+}
+
+.navbar .navbar-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7em 1em;
+    color: #ccc;
+}
+
+.navbar .navbar-menu .navbar-menu-item {
+    cursor: pointer;
+}
+
+.navbar .navbar-menu .navbar-menu-item:last-child img {
+    height: 3em;
+    width: 3em;
+}
+
+.navbar .navbar-menu .navbar-menu-item:first-child img {
+    width: 4rem; 
+}
+
+.navbar .navbar-menu .navbar-menu-item:nth-child(2) {
+    flex-grow: 1;
+}
+
+.navbar .navbar-menu .navbar-menu-item input {
+    display: block;
+    margin: auto;
+    width: 50%;
+    border-radius: 1em;
+    border-color: #ccc;
+    border-width: 1px;
+    color: #000;
+}
+
+.navbar .navbar-menu .navbar-menu-item input:focus {
+    outline: none;
+}
+
+.navbar .navbar-menu .navbar-menu-item button:first-child {
+    margin-right: 2em;
+}
+
+.navbar .navbar-menu .navbar-menu-item button:last-child {
+    display: inline-block;
+    font: 0.875em 'Baloo', sans-serif;
+    border: 1px solid dimgrey;
+    background: transparent;
+    color: dimgrey;
+    box-shadow: none;
+}
+
+.navbar .navbar-menu .navbar-menu-item button:last-child:hover {
+    color: #000;
+}
+
+.navbar .navbar-menu .navbar-menu-item .icon-item {
+    margin-right: 1em;
+    font-size: 2em;
+}
+
+.navbar .navbar-menu .navbar-menu-item .icon-item:hover {
+    color: #000;
+}
+
+.navbar .dropdown {
+    display: none;
+}
+
+.navbar .dropdown.active {
+    display: block;
+}
+
+.navbar .dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 100;
+    min-width: 15em;
+    padding: 0.5em 0;
+    margin-top: 0.2em;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 0px 0px 4px 4px;
+    box-shadow: 0 1px 15px rgba(27, 31, 35, 0.15);
+    overflow: hidden;
+}
+
+.navbar .dropdown .notification-dropdown-menu {
+    right: 5em;
+    min-width: 25em;
+}
+
+.navbar .notification-dropdown-menu .notification-dropdown-content span {
+    color: #119da4;
+    font-weight: bold;
+}
+
+.navbar .dropdown-menu a,
+.navbar .dropdown .notification-dropdown-menu > * {
+    display: block;
+    padding: 0.25em 1em;
+    color: grey;
+}
+
+.navbar .dropdown-menu a:first-child {
+    cursor: default;
+}
+
+.navbar .dropdown-menu a:hover:not(:first-child) {
+    background: #119da4;
+    color: #fff;
+}
+
+.navbar .dropdown-menu .dropdown-divider {
+    display: block;
+    height: 0;
+    margin: 8px 0;
+    border-top: 1px solid #e1e4e8;
+}
+
+.navbar .arrow {
+    position: absolute;
+    top: 4.5em;
+    right: 1.8em;
+    width: 0;
+    height: 0;
+    z-index: 2000;
+    border-left: 0.7em solid transparent;
+    border-right: 0.7em solid transparent;
+    border-bottom: 0.7em solid #fff;
+}
+
+.navbar .arrow.notification-arrow {
+    right: 6.3em;
+}
+
+
+/*
+ *  Home
+ */
+
+.home {
+    width: 60%;
+}
+
+/*
+ *  Feed Card
+ */
+
+.feed-card {
+    padding: 1.2em;
+    margin-bottom: 1em; 
+    border-radius: 0.35em;
+    background: #fff;
+    box-shadow: 1px 3px 9px rgba(0, 0, 0, 0.15);
+    color: dimgrey;
+}
+
+.feed-card .feed-card-header {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.feed-card .feed-card-header .feed-card-avatar {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.feed-card .feed-card-header .feed-card-meta {
+    flex-grow: 1;
+}
+
+.feed-card .feed-card-header img {
+    height: 3em;
+    width: 3em;
+}
+
+.feed-card .feed-card-header i {
+    cursor: pointer;
+}
+
+.feed-card .feed-card-header .feed-card-meta span {
+    display: inline-block;
+}
+
+.feed-card .feed-card-content {
+    vertical-align: baseline;
+}
+
+.feed-card .feed-card-content h4 {
+    font-weight: normal;
+}
+
+.feed-card .feed-card-content .feed-card-footer {
+    margin-top: 1em;
+}
+
+.feed-card .feed-card-content .feed-card-footer .feed-card-stats,
+.feed.card .feed-card-content .feed-card-footer .feed-card-actions {
+    display: inline-block;
+}
+
+.feed-card .feed-card-header i,
+.feed-card .feed-card-content .feed-card-footer i {
+    display: inline-block;
+    margin-right: 0.3em;
+    font-size: 2em;
+    color: #119da4;
+}
+
+.feed-card .feed-card-content .feed-card-footer span {
+    margin-right: 1em;
+    color: dimgrey;
+}
+
+.feed-card .feed-card-content .feed-card-footer .feed-card-actions {
+    float: right;
+}
+
+.feed-card .feed-card-content .feed-card-footer .feed-card-actions i:not(:last-child) {
+    margin-right: 0.85em;
+}
+
+.feed-card .feed-card-votesbar {
+    width: 100%;
+}
+
+/*
+ *  Sidebar 
+ */
+
+.sidebar {
+    position: fixed;
+    top: 8vh;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    padding-right: 3em;
+    color: dimgrey;
+}
+
+.sidebar .sidebar-main .sidebar-segment div {
+    background: #fff;
+    border-radius: 2px;
+    margin-bottom: 1em;
+    padding: 1em;
+    cursor: pointer;
+}
+
+.sidebar .sidebar-main .sidebar-segment p {
+    margin: 0;
+}
+
+.sidebar .sidebar-main .sidebar-segment span {
+    display: inline-block;
+    float: right;
+}
+
+.sidebar .sidebar-main .sidebar-segment span:not(:first-child) {
+    margin-right: 1em;
+}
+
+.sidebar .sidebar-main h4 {
+    font-weight: normal;
+}
+
+.sidebar .sidebar-footer {
+    text-align: right;
+}
+
+.sidebar .sidebar-footer span {
+    margin-right: 1em;
+    cursor: pointer;
+}
+
+.sidebar .sidebar-footer span:last-child {
+    margin-right: 0;
+}
+
+/*
+ * Auth
+ */
+
+.auth .auth-card {
+    width: 45%;
+    margin: 0 auto;
+    padding: 2em 1em;
+    background-color: #fff;
+    text-align: center;
+}
+
+.auth .auth-card .auth-card-header {
+    margin-top: 2em;
+}
+
+.auth .auth-card .auth-card-header img {
+    width: 15vw;
+}
+
+.auth .auth-card .auth-card-content input {
+    width: 50%;
+}
+
+.auth .auth-card .auth-card-content button {
+    background-color: #119da4;
+    color: #fff;
+    border-radius: 1.5em;
+    width: 35%;
+    margin-top: 1em;
+    font-family: 'Baloo', sans-serif;
+}
+
+.auth .auth-card .auth-card-content a {
+    display: block;
+    margin-top: 1em;
+}
+
+/*
+ *  Create
+ */
+
+.create {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.create .create-header h1 {
+    color: dimgrey;
+}
+
+.create .create-content input,
+.create .create-content textarea {
+    width: 90%;
+    font-family: inherit;
+}
+
+.create .create-content input[name=choiceA],
+.create .create-content input[name=choiceB] {
+    display: inline-block;
+    width: 40%;
+}
+
+.create .create-content div {
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.create .create-content button {
+    width: 70%;
+    margin-top: 1em;
+    border-radius: 1.5em;
+}
+
+/* 
+ *  Wrangle
+ */
+
+.wrangle .wrangle-detail {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-header {
+    margin-bottom: 1em;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-header h1 {
+    font-weight: normal;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-header hr {
+    width: 50%;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-header i {
+    font-size: 1.5em;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-header span {
+    margin-right: 2em;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-votesbar {
+    width: 30vw;
+    min-width: 10vw;
+    margin-bottom: 1em;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-postcomment > * {
+    vertical-align: middle;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-postcomment img {
+    width: 5em;
+    height: 5em;
+    margin-right: 2em;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-postcomment textarea {
+    width: 40%;
+    height: 7em;
+    border-radius: 5px;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-postcomment button {
+    width: 20%;
+    border-radius: 2em;
+    background: linear-gradient(to right, #119da4, #1cd8d2);
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-comments {
+    width: 60%;
+    margin-top: 2em;
+    text-align: left;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-comments h2 {
+    text-align: center;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-comments .comment {
+    margin-bottom: 2em;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-comments .comment img {
+    height: 4em;
+    width: 4em;
+    margin-right: 1em;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-comments .comment > * {
+    vertical-align: top;
+}
+
+.wrangle .wrangle-detail .wrangle-detail-content .wrangle-detail-comments .comment .comment-meta span {
+    display: inline-block;
+} 
+
+/* 
+ *  Settings
+ */
+
+.settings > * {
+    display: inline-block;
+}
+
+.settings .settings-sidebar {
+    width: 20%;
+    overflow-x: hidden;
+    padding: 0.5em 0;
+    vertical-align: top;
+    background-color: #fff;
+    border-left: 0.2em solid #119da4;
+}
+
+.settings .settings-sidebar .active{
+    background-color: #119da4;
+    color :white;
+}
+
+.settings .settings-sidebar a {
+    padding: 0.5em 1.5em;
+    display: block;
+    font-family: 'Baloo', sans-serif;
+    color: dimgrey;
+}
+
+.settings .settings-sidebar a:hover{
+    transform: scale(1.1);
+}
+
+.settings .settings-main {
+    width: 50%;
+    padding: 0 0 0 3em;
+    margin-left: 3em;
+    vertical-align: top;
+}
+
+.settings .settings-main h1 {
+    width: 90%;
+    margin-bottom: 2em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid dimgrey;
+}
+
+.settings .settings-main form > * {
+    vertical-align: middle;
+}
+
+.settings .settings-main label {
+    display: inline-block;
+    width: 100px;
+}
+
+.settings .settings-main input,
+.settings .settings-main textarea {
+    width: 70%;
+    border-radius: 0.3em;
+}
+
+.settings .settings-main button {
+    width: 53%;
+    margin-top: 2em;
+    margin-left: 100px;
+    border-radius: 1.5em;
+}
+
+.settings .settings-main button:last-child {
+    margin: 0;
+    background: transparent;
+    border: 1px solid #ed254e;
+    box-shadow: none;
+    color: #ed254e;
+}
+
+.settings .settings-main button:last-child:hover {
+    background: #ed254e;
+    color: #fff;
+}
+
+.settings .photo-box {
+    position: relative;
+}
+
+.settings .photo-box h4 {
+    font-family: 'Baloo', sans-serif;
+}
+
+.settings .photo-box img {
+    height: 200px;
+    width: 200px;
+    border-radius: 1.5em;
+}
+
+/*
+ *  Profile
+ */
+
+.profile > * {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.profile .profile-sidebar {
+    width: 40%;
+    text-align: center;
+}
+
+.profile .profile-sidebar button {
+    display: block;
+    margin: 1em auto;
+}
+
+.profile .profile-sidebar img {
+    width: 200px;
+    height: 200px;
+    border-radius: 0.2em;
+}
+
+.profile .profile-main {
+    width: 45%;
+}
+
+.profile .profile-main .profile-nav {
+    border-bottom: 1px solid #ccc;
+}
+
+.profile .profile-main .profile-nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+.profile .profile-main .profile-nav li {
+    display: inline-block;
+    margin-right: 2em;
+    padding: 1em;
+    list-style: none;
+}
+
+.profile .profile-main .profile-nav li:hover {
+    color: dimgrey;
+    border-bottom: 2px solid dimgrey;
+    cursor: pointer;
+}
+
+.profile .profile-main .profile-nav li.active {
+    color: #119da4;
+    border-bottom: 2px solid #119da4;
+}
+
+.profile .profile-main .profile-article {
+    padding: 2vh 0em;
+    overflow: hidden;
+}
+
+/*  Modal */
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
